@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Responsive Webpage</title>
+  <link rel="stylesheet" href="Form.css">
+
+</head>
+<body>
+<header>
+  <h1>Modern Responsive Webpage</h1>
+</header>
+
+<div class="form-container">
+  <h2>Sign Up</h2>
+  <form id="signup-form" novalidate>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" minlength="6" required>
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<div class="dropdown">
+  <button class="menu-button">Menu</button>
+  <div class="dropdown-content">
+    <a href="#">Option 1</a>
+    <a href="#">Option 2</a>
+    <a href="#">Option 3</a>
+  </div>
+</div>
+
+<div class="modal" id="success-modal">
+  <div class="modal-content">
+    <h2>Success!</h2>
+    <p>Your form has been submitted.</p>
+    <button id="close-modal">Close</button>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('signup-form');
+  const modal = document.getElementById('success-modal');
+  const closeModal = document.getElementById('close-modal');
+  const email = document.getElementById('email');
+  const name = document.getElementById('name');
+  const password = document.getElementById('password');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (name.value.trim() === '') {
+      alert('Name is required');
+      return;
+    }
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailPattern.test(email.value)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    if (password.value.length < 6) {
+      alert('Password must be at least 6 characters');
+      return;
+    }
+
+    modal.style.display = 'flex';
+  });
+
+  closeModal.addEventListener('click', function () {
+    modal.style.display = 'none';
+  });
+
+  document.querySelector('.menu-button').addEventListener('click', function () {
+    document.querySelector('.dropdown-content').classList.toggle('show');
+  });
+</script>
+
+</body>
+</html>
